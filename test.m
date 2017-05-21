@@ -1,8 +1,14 @@
-x = (0:1:10)';
-y1 = x.^2;
-y2 = x.^3;
-y3 = x.^4;
+x = (0:0.3:10)';
+y = [x.^2 x.^3 x.^4];
+xLabel = 'x label — t';
+yLabel = ['y label — \theta'
+          'y label — \alpha'
+          'y label — \gamma'];
 
-buildGraph([x y1], 'x label — t', 'y label — \theta', [0 10, 0 100], 1);
-buildGraph([x y2], 'x label — t', 'y label — \alpha', [0 10, 0 100], 0);
-buildGraph([x y3], 'x label — t', 'y label — \gamma', [0 10, 0 100], 0);
+%% One graph
+buildGraph([x y(:,1)], xLabel, yLabel(1,:), [0 10, 0 100], 1);
+
+%% A number of graphs
+buildGraph([x y(:,1)], xLabel, yLabel(1,:), [0 10, 0 100], 1);
+buildGraph([x y(:,2)], xLabel, yLabel(2,:), [0 10, 0 100], 0);
+buildGraph([x y(:,3)], xLabel, yLabel(3,:), [0 10, 0 100], 0);

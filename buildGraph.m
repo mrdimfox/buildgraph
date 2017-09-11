@@ -133,9 +133,9 @@ xlabel(labX, 'FontSize', 14,...
 % Create ylabel and legend
 if length(legendList__) > 1
     labY = ' ';
-    leg = legend(legendList__, 'Location','Best');
+    leg = legend(legendList__{:}, 'Location','Best');
     set(leg,'interpreter','tex')
-end;
+end
 ylabel(labY,'FontSize',14,'Interpreter','tex');
 
 end

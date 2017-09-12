@@ -9,11 +9,12 @@ function [out_figure] = buildGraph(figTitle, config, isNewFig)
 %  marker [auto detection]                        '*' or 'x' or 'o' or '.' ...
 %  isColor [false] NOT IMPLEMENTED YET            -
 %  color [auto detection] NOT IMPLEMENTED YET     -
+%  interpreter ['latex']                          tex, latex or none
 % isNewFig [false]                                use old figure or new one
 %
-% [] — default value
-% [auto system] — use embedded matlab defaults
-% [auto detection] — use local alghoritm
+% [] ï¿½ï¿½default value
+% [auto system] ï¿½ï¿½use embedded matlab defaults
+% [auto detection] ï¿½ï¿½use local alghoritm
 
 XY = config.xy;
 
@@ -47,6 +48,12 @@ end
 % If some lines styles setted
 isLineStyle = isfield(config, 'lineStyle');
 isMarker = isfield(config, 'marker');
+
+% If interpreter defined
+interpreter = 'latex';
+if isfield(config, 'interpreter')
+    interpreter = config.interpreter;
+end
 
 % If new figure
 if nargin < 3
@@ -128,14 +135,14 @@ legendList__(length(legendList__)+1) = {labY};
 
 % Create xlabel
 xlabel(labX, 'FontSize', 14,...
-             'Interpreter', 'tex');
+             'Interpreter', interpreter);
 
 % Create ylabel and legend
 if length(legendList__) > 1
     labY = ' ';
     leg = legend(legendList__{:}, 'Location','Best');
-    set(leg,'interpreter','tex')
+    set(leg, 'interpreter', interpreter)
 end
-ylabel(labY,'FontSize',14,'Interpreter','tex');
+ylabel(labY,'FontSize',14,'Interpreter', interpreter);
 
 end

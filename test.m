@@ -42,20 +42,21 @@ buildGraph('', config);
 
 %% *****************************
 %% helptools.buildGraph test
+buildGraphHT = @helptools.buildGraph;
 
 % One plot
-helptools.buildGraph("helptools.buildGraph1", x, y(:,1));
+buildGraphHT("helptools.buildGraph1", x, y(:,1));
 
 % Two plots
-helptools.buildGraph("helptools.buildGraph2", x, y(:,2));
-helptools.buildGraph("", x, y(:,3),...
-                     "isNewFig", false);
+buildGraphHT("helptools.buildGraph2", x, y(:,2));
+buildGraphHT("", x, y(:,3),...
+             "isNewFig", false);
 
 % Hidden plots
-helptools.buildGraph("helptools.buildGraph2", x, y(:,2),...
-                     "showPlot", false);
-helptools.buildGraph("", x, y(:,3),...
-                     "isNewFig", false);
+buildGraphHT("helptools.buildGraph2", x, y(:,2),...
+             "showPlot", false);
+buildGraphHT("", x, y(:,3),...
+             "isNewFig", false);
 
 
 

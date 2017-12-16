@@ -12,9 +12,9 @@ function [out_figure] = buildGraph(figTitle, config, isNewFig)
 %  interpreter ['latex']                          tex, latex or none
 % isNewFig [false]                                use old figure or new one
 %
-% [] ��default value
-% [auto system] ��use embedded matlab defaults
-% [auto detection] ��use local alghoritm
+% [] - default value
+% [auto system] - use embedded matlab defaults
+% [auto detection] - use local alghoritm
 
 XY = config.xy;
 

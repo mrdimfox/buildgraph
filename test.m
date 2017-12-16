@@ -2,10 +2,10 @@ clear;
 
 x = (0:0.3:10)';
 y = [x.^2 x.^3 x.^4];
-xLabel = 'x label - t';
-yLabel = ['y label - \theta'
-          'y label - \alpha'
-          'y label - \gamma'];
+xLabel = '$$x label - t$$';
+yLabel = ['$$y label - \theta$$'
+          '$$y label - \alpha$$'
+          '$$y label - \gamma$$'];
 
 %% *****************************
 %% buildGraphA test
@@ -58,7 +58,7 @@ buildGraphHT("helptools.buildGraph2", x, y(:,2),...
 buildGraphHT("", x, y(:,3),...
              "isNewFig", false);
 
+pause(5);
 
-
-
+helptools.closeStuff();
 

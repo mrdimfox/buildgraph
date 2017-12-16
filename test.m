@@ -1,9 +1,11 @@
+clear;
+
 x = (0:0.3:10)';
 y = [x.^2 x.^3 x.^4];
-xLabel = 'x label — t';
-yLabel = ['y label — \theta'
-          'y label — \alpha'
-          'y label — \gamma'];
+xLabel = 'x label - t';
+yLabel = ['y label - \theta'
+          'y label - \alpha'
+          'y label - \gamma'];
 
 %% *****************************
 %% buildGraphA test
@@ -37,3 +39,25 @@ buildGraph('', config);
 config.xy = [x y(:,3)];
 config.yLabel = yLabel(3,:);
 buildGraph('', config);
+
+%% *****************************
+%% helptools.buildGraph test
+
+% One plot
+helptools.buildGraph("helptools.buildGraph1", x, y(:,1));
+
+% Two plots
+helptools.buildGraph("helptools.buildGraph2", x, y(:,2));
+helptools.buildGraph("", x, y(:,3),...
+                     "isNewFig", false);
+
+% Hidden plots
+helptools.buildGraph("helptools.buildGraph2", x, y(:,2),...
+                     "showPlot", false);
+helptools.buildGraph("", x, y(:,3),...
+                     "isNewFig", false);
+
+
+
+
+

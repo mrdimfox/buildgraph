@@ -26,31 +26,31 @@ function [out_figure] = buildGraph(figTitle, x, y, varargin)
 %
 %   EXAMPLE OF USE:
 %    % One plot
-%    helptools.buildGraph("helptools.buildGraph1", x, y(:,1));
+%    helptools.buildGraph('helptools.buildGraph1', x, y(:,1));
 % 
 %    % Two plots
-%    helptools.buildGraph("helptools.buildGraph2", x, y(:,2));
-%    helptools.buildGraph("", x, y(:,3),...
-%                        "isNewFig", false);
+%    helptools.buildGraph('helptools.buildGraph2', x, y(:,2));
+%    helptools.buildGraph('', x, y(:,3),...
+%                        'isNewFig', false);
 %
 %    % Hidden two plots
-%    helptools.buildGraph("helptools.buildGraph2", x, y(:,2),...
-%                         "showPlot", false);
-%    helptools.buildGraph("", x, y(:,3),...
-%                         "isNewFig", false);
+%    helptools.buildGraph('helptools.buildGraph2', x, y(:,2),...
+%                         'showFig',  false);
+%    helptools.buildGraph('', x, y(:,3),...
+%                         'isNewFig', false);
 %
 optionalArgsProc = {...
     @(p)addRequired(p,    'figTitle');
     @(p)addRequired(p,    'x');
     @(p)addRequired(p,    'y');
     @(p)addParameter(p,   'xyLimits',       []);
-    @(p)addParameter(p,   'xLabel',         "x",      @(s)ischar(s));
-    @(p)addParameter(p,   'yLabel',         "",       @(s)ischar(s));
-    @(p)addParameter(p,   'lineStyle',      "",       @(s)ischar(s));
-    @(p)addParameter(p,   'marker',         "",       @(s)ischar(s));
+    @(p)addParameter(p,   'xLabel',         'x',      @(s)ischar(s));
+    @(p)addParameter(p,   'yLabel',         '',       @(s)ischar(s));
+    @(p)addParameter(p,   'lineStyle',      '',       @(s)ischar(s));
+    @(p)addParameter(p,   'marker',         '',       @(s)ischar(s));
     @(p)addParameter(p,   'interpreter',    'latex',  @(s)ischar(s));
     @(p)addParameter(p,   'isNewFig',       true);
-    @(p)addParameter(p,   'showPlot',       true);
+    @(p)addParameter(p,   'showFig',        true);
 };
 argsToParse = {};
 argsToParse(end+1) = {figTitle};
@@ -81,6 +81,8 @@ global legendList__;
 global lineStyleList__;
 global markerStyleList__;
 global plotNum__;
+global figTitle__;
+global showFig__;
 
 % Create new figure
 if args.isNewFig
@@ -89,9 +91,11 @@ if args.isNewFig
     lineStyleList__ = {'-', '--', ':', '-.'};
     markerStyleList__ = {'o', '+', '*', '.', 'x', 's', 'd',...
                          '^', 'v', '>', '<', 'p', 'h'};
+    figTitle__ = args.figTitle;
+    showFig__ = args.showFig;
 
     plotVisible = 'off';
-    if args.showPlot
+    if args.showFig
         plotVisible = 'on';
     end
     % Create figure (with magic awsome sizes)
@@ -164,16 +168,21 @@ xlabel(args.xLabel, 'FontSize', 14,...
 % Create ylabel and legend
 legendYLabel = args.yLabel;
 if args.yLabel == ""
-    legendYLabel = sprintf("%s%d", 'y', plotNum__);
+    legendYLabel = sprintf('%s%d', 'y', plotNum__);
     if plotNum__ ~= 0
-        args.yLabel = sprintf("%s%d", 'y', plotNum__);
+        args.yLabel = legendYLabel;
     else
         args.yLabel = 'y';
-    end
+    end 
     plotNum__ = plotNum__ + 1;
 end
 
 legendList__(length(legendList__)+1) = {legendYLabel};
+
+if ~showFig__
+    fprintf('\nPlotting \"%s/%s\" was finished!',...
+             figTitle__, args.yLabel)
+end
 
 if length(legendList__) > 1
     args.yLabel = ' ';

@@ -45,19 +45,20 @@ buildGraph('', config);
 buildGraphHT = @helptools.buildGraph;
 
 % One plot
-buildGraphHT("helptools.buildGraph1", x, y(:,1));
+buildGraphHT('helptools.buildGraph1', x, y(:,1));
 
 % Two plots
-buildGraphHT("helptools.buildGraph2", x, y(:,2));
-buildGraphHT("", x, y(:,3),...
-             "isNewFig", false);
+buildGraphHT('helptools.buildGraph2', x, y(:,2));
+buildGraphHT('', x, y(:,3),...
+             'isNewFig', false);
 
 % Hidden plots
-buildGraphHT("helptools.buildGraph2", x, y(:,2),...
-             "showPlot", false);
-buildGraphHT("", x, y(:,3),...
-             "isNewFig", false);
+buildGraphHT('helptools.buildGraph3_hidden', x, y(:,2),...
+             'showFig', false);
+buildGraphHT('', x, y(:,3),...
+             'isNewFig', false);
 
+fprintf('\n');
 pause(5);
 
 helptools.closeStuff();
